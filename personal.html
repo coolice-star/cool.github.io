@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>凉冰同学的个人空间</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #E2E2FF 0%, #9191FF 100%);
+            --secondary-gradient: linear-gradient(135deg, #8F6EFF 0%, #C8B6FF 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: #1a1a2e;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(230, 230, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(145, 145, 255, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--primary-gradient);
+            color: #1a1a2e;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(145, 145, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.2) 50%, transparent 55%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            border: 5px solid rgba(255,255,255,0.5);
+            box-shadow: 0 0 30px rgba(145, 145, 255, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(145, 145, 255, 0.5);
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #9191FF;
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-gradient);
+            border-radius: 3px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #b8b8d4;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(145, 145, 255, 0.1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 8px 25px rgba(145, 145, 255, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 2.5em;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: #9191FF;
+            text-decoration: none;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gradient);
+            color: #1a1a2e;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+
+            .music-control {
+                width: 50px;
+                height: 50px;
+                left: 70%;
+            }
+
+            .music-control i {
+                font-size: 24px;
+            }
+        }
+
+        /* 添加彩蛋动画相关样式 */
+        .easter-egg {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fall 1s ease-in forwards;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 修改音乐控制按钮样式 */
+        .music-control {
+            position: absolute;
+            left: 70%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            box-shadow: 0 2px 10px rgba(145, 145, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 15px rgba(145, 145, 255, 0.5);
+        }
+
+        .music-control i {
+            color: #1a1a2e;
+            font-size: 30px;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotating {
+            animation: rotate 20s linear infinite;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="avatar-container">
+                <img src="touxiang.jpg" alt="凉冰同学" class="avatar" title="点击访问我的抖音主页">
+                <div class="music-control rotating" title="点击控制音乐播放/暂停">
+                    <i class="fas fa-music"></i>
+                </div>
+            </div>
+            <h1>凉冰同学</h1>
+            <p>牛马程序员 | AI学习探索者 | 短视频创作者</p>
+        </header>
+
+        <section class="section">
+            <h2>关于我</h2>
+            <p>哈喽大家好！我叫凉冰，是一名充满激情的编程学习者。我励志要成为一名优秀摄影师和程序员，并在摄影和短视频领域上有所成就。</p>
+            <p>我相信AI必将改变世界，这为我们这些年轻人带来了前所未有的机遇。我正在积极探索如何充分利用AI来提升学习效率和创作能力。</p>
+        </section>
+
+
+        <section class="section">
+            <h2>我的技能方向</h2>
+            <div class="skills">
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>编程开发</h3>
+                    <p>正在学习Web开发、Python等编程技术</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI应用</h3>
+                    <p>探索AI辅助学习和创作的新方法</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-video"></i>
+                    <h3>短视频创作</h3>
+                    <p>致力于制作优质的技术分享内容</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>学习心得</h2>
+            <p>在编程学习的道路上，我深刻体会到AI工具的强大。通过合理运用ChatGPT、GitHub Copilot等AI助手，我的学习效率得到了显著提升。</p>
+            <p>我会在这里分享我的学习经验和心得，希望能帮助到更多的编程学习者。</p>
+        </section>
+
+        <section class="section">
+            <h2>联系我</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#"><i class="fab fa-bilibili"></i> 哔哩哔哩</a>
+                <a href="#"><i class="fas fa-envelope"></i> Email</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- 添加音乐播放器 -->
+    <audio id="bgMusic" loop>
+        <source src="Keep_Bleeding_Love-Adriana_Costa-82791100-100.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatar = document.querySelector('.avatar');
+            const bgMusic = document.getElementById('bgMusic');
+            const musicControl = document.querySelector('.music-control');
+            let isMusicPlaying = false;
+
+            // 尝试自动播放音乐
+            function tryAutoplay() {
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    musicControl.classList.add('rotating');
+                }).catch(err => {
+                    console.log('自动播放失败，需要用户交互:', err);
+                });
+            }
+
+            // 页面加载完成后尝试自动播放
+            tryAutoplay();
+
+            // 音乐控制按钮点击事件
+            musicControl.addEventListener('click', function() {
+                if (isMusicPlaying) {
+                    bgMusic.pause();
+                    musicControl.classList.remove('rotating');
+                } else {
+                    bgMusic.play();
+                    musicControl.classList.add('rotating');
+                }
+                isMusicPlaying = !isMusicPlaying;
+            });
+
+            // 创建彩蛋动画
+            function createEasterEgg() {
+                const emojis = ['🎉', '⭐', '💫', '✨', '🌟', '💝', '🎨', '📸'];
+                const egg = document.createElement('div');
+                egg.className = 'easter-egg';
+                egg.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                egg.style.left = Math.random() * window.innerWidth + 'px';
+                egg.style.fontSize = Math.random() * 20 + 20 + 'px';
+                document.body.appendChild(egg);
+                
+                // 动画结束后移除元素
+                egg.addEventListener('animationend', () => egg.remove());
+            }
+
+            // 点击头像触发效果
+            avatar.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 创建多个彩蛋
+                for(let i = 0; i < 15; i++) {
+                    setTimeout(() => createEasterEgg(), i * 100);
+                }
+
+                // 延迟跳转，让动画有时间播放
+                setTimeout(() => {
+                    window.open('https://www.douyin.com/user/self?from_tab_name=main', '_blank');
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html> 
